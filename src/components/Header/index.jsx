@@ -3,6 +3,7 @@ import { MapPin, ShoppingCart } from "phosphor-react";
 
 import logoCoffee from "../../assets/Logo.svg";
 import { Badge } from "@mui/material";
+import { Link } from "react-router-dom";
 import { useContext } from "react";
 
 import { useCart } from "../Context/CartContext";
@@ -29,7 +30,7 @@ export function Header(props) {
           </div>
           <div className="h-11 w-10 bg-yellow rounded-md">
             <Badge color="warning" badgeContent={cart.size}>
-              <a href="/cart">
+              <Link to="/cart">
                 <button className="h-11 w-10 bg-yellow-light rounded-md hover:bg-yellow-500">
                   <ShoppingCart
                     size={18}
@@ -38,7 +39,7 @@ export function Header(props) {
                     className="ml-2.5"
                   />
                 </button>
-              </a>
+              </Link>
             </Badge>
           </div>
         </nav>
