@@ -1,20 +1,37 @@
-import * as React from "react";
-import { useState, useEffect } from "react";
-import { useForm } from "react-hook-form";
+import * as React from "react"
+import { useState } from "react"
+import { useForm } from "react-hook-form"
+import { yupResolver } from "@hookform/resolvers/yup"
+import * as yup from "yup"
 
-import styled from "styled-components";
+import styled from "styled-components"
 
-import { CurrencyDollar, MapPinLine } from "phosphor-react";
+import { CurrencyDollar, MapPinLine, ShoppingCart, Link } from "phosphor-react"
 
-import { CoffeeCart } from "../components/TableCoffeePurchase";
-export function Cart({ loadedCart }) {
-const { register, handleSubmit, watch, formState: { errors } } = useForm();
+import { CoffeeCart } from "../components/TableCoffeePurchase"
+import { useCart } from "../components/Context/CartContext"
 
-  const onSubmit = data => console.log(data);
+export function Cart({ children }) {
+  const schema = yup
+    .object({
+      cep: yup.string().required("O CEP é obrigatório"),
+      rua: yup.string().required("A Rua é obrigatório"),
+      number: yup.string().required("O Número é obrigatório"),
+      bairro: yup.string().required("O Bairro é obrigatório"),
+      city: yup.string().required("A Cidade é obrigatório"),
+      uf: yup.string().required("O Estado é obrigatório"),
+    })
+    .required()
 
-  function handleCreatePurchaseCoffee() {
-    console.log("comprei");
-  }
+  const {
+    register,
+    formState: { errors },
+    handleSubmit,
+  } = useForm({
+    resolver: yupResolver(schema),
+  })
+
+  // const [data, setData] = useState(null)
 
   const Button = styled.button`
     background-color: #e6e5e5;
@@ -34,7 +51,7 @@ const { register, handleSubmit, watch, formState: { errors } } = useForm();
       cursor: default;
       opacity: 0.7;
     }
-  `;
+  `
 
   const ButtonToggle = styled(Button)`
     margin-left: 5px;
@@ -45,12 +62,12 @@ const { register, handleSubmit, watch, formState: { errors } } = useForm();
     opacity: 1;
     background: #EBE5F9;
   `}
-  `;
+  `
 
-  const types = ["Crédito", "Débito", "Dinheiro"];
+  const types = ["Crédito", "Débito", "Dinheiro"]
 
   function ButtonGroup() {
-    const [active, setActive] = useState(types[0]);
+    const [active, setActive] = useState()
     return (
       <div>
         {types.map((type) => (
@@ -64,8 +81,12 @@ const { register, handleSubmit, watch, formState: { errors } } = useForm();
           </ButtonToggle>
         ))}
       </div>
-    );
+    )
   }
+
+  const onSubmit = (data) => console.log(data)
+
+  const cart = useCart()
 
   return (
     <div>
@@ -76,95 +97,157 @@ const { register, handleSubmit, watch, formState: { errors } } = useForm();
             <h1 className="font-bold text-3xl center">Cafés selecionados</h1>
           </div>
         </div>
-        <div className="">
+        <div>
           <form
-            className="grid grid-rows-2 grid-flow-col w-20 h-[600px]"
+            className="grid grid-rows-2 grid-flow-col w-20 h-[700px] "
             onSubmit={handleSubmit(onSubmit)}
           >
-            <div className="mt-5 border w-[640px] p-10 bg-[#F3F2F2] container rounded-lg shadow-sm mr-20 h-96 row-span">
+            <div className="mt-5 border w-[640px] p-10 bg-[#F3F2F2] container rounded-lg shadow-sm mr-20 h-[460px] row-span">
               <div className="gap-5 flex flex-wrap">
                 <MapPinLine size={24} color="#c47f17" weight="light" />
                 <div>
                   <span className="text-center">Endereço de Entrega</span>
-                  <h2>Informe o endereço onde deseja receber seu pedido</h2>
+                  <h1>Informe o endereço onde deseja receber seu pedido</h1>
                 </div>
               </div>
               <div className="gap-5 p-5 grid">
                 <div>
+                  <label>CEP</label>
                   <input
-                    type="text"
-                    {...register("CEP")}
+                    {...register("cep", {
+                      required: "Você deve informar o seu CEP",
+                      maxLength: {
+                        value: 8,
+                        message: "CEP possui mais de 8 números",
+                      },
+                      pattern: {
+                        value: /^[0-9]{8}$/i,
+                        message: "CEP informado incorretamente",
+                      },
+                    })}
                     placeholder="CEP"
-                    id=""
+                    id="cep"
+                    name="cep"
                     className="mt-1 block w-full px-3 py-2 bg-base-input border border-slate-300 rounded-md text-sm shadow-sm placeholder-slate-400
       focus:outline-none focus:border-yellow-dark focus:ring-1 focus:ring-yellow-dark
       disabled:bg-slate-50 disabled:text-slate-500 disabled:border-slate-200 disabled:shadow-none
       "
                   />
+                  {errors.cep && (
+                    <p className="underline absolute">{errors.cep.message}</p>
+                  )}
                 </div>
-                <input
-                  type="text"
-                  {...register("Rua")}
-                  placeholder="Rua"
-                  id=""
-                  className="mt-1 block w-full px-3 py-2 bg-base-input border border-slate-300 rounded-md text-sm shadow-sm placeholder-slate-400
+                <label>
+                  Rua
+                  <input
+                    type="text"
+                    {...register("Rua")}
+                    placeholder="Rua"
+                    id=""
+                    className="mt-1 block w-full px-3 py-2 bg-base-input border border-slate-300 rounded-md text-sm shadow-sm placeholder-slate-400
       focus:outline-none focus:border-yellow-dark focus:ring-1 focus:ring-yellow-dark
       disabled:bg-slate-50 disabled:text-slate-500 disabled:border-slate-200 disabled:shadow-none
       "
-                />
+                  />
+                  {errors.rua && (
+                    <p className="underline absolute">{errors.rua.message}</p>
+                  )}
+                </label>
                 <div className="flex gap-5 justify-self-auto">
-                  <input
-                    type="text"
-                    {...register("number", { valueAsNumber: true })}
-                    placeholder="Número"
-                    id=""
-                    className="mt-1 block w-full px-3 py-2 bg-base-input border border-slate-300 rounded-md text-sm shadow-sm placeholder-slate-400
+                  <label>
+                    Numero
+                    <input
+                      type="text"
+                      {...register("number", {
+                        required:
+                          "Você deve informar o número do local de entrega",
+                      })}
+                      placeholder="Número"
+                      id="number"
+                      className="mt-1 block w-full px-3 py-2 bg-base-input border border-slate-300 rounded-md text-sm shadow-sm placeholder-slate-400
       focus:outline-none focus:border-yellow-dark focus:ring-1 focus:ring-yellow-dark
       disabled:bg-slate-50 disabled:text-slate-500 disabled:border-slate-200 disabled:shadow-none
       "
-                  />
-                  <input
-                    type="text"
-                    {...register("complemento")}
-                    placeholder="Complemento"
-                    id=""
-                    className="mt-1 block w-full px-3 py-2 bg-base-input border border-slate-300 rounded-md text-sm shadow-sm placeholder-slate-400
+                    />
+                    {errors.number && (
+                      <p className="underline absolute">
+                        {errors.number.message}
+                      </p>
+                    )}
+                  </label>
+                  <label>
+                    Complemento
+                    <input
+                      type="text"
+                      {...register("complemento")}
+                      placeholder="Complemento"
+                      id=""
+                      className="mt-1 block w-full px-3 py-2 bg-base-input border border-slate-300 rounded-md text-sm shadow-sm placeholder-slate-400
       focus:outline-none focus:border-yellow-dark focus:ring-1 focus:ring-yellow-dark
       disabled:bg-slate-50 disabled:text-slate-500 disabled:border-slate-200 disabled:shadow-none
       "
-                  />
+                    />
+                  </label>
                 </div>
                 <div className="flex gap-5">
-                  <input
-                    type="text"
-                    {...register("bairro")}
-                    placeholder="Bairro"
-                    id=""
-                    className="mt-1 block w-full px-3 py-2 bg-base-input border border-slate-300 rounded-md text-sm shadow-sm placeholder-slate-400
+                  <label>
+                    Bairro
+                    <input
+                      type="text"
+                      {...register("bairro", {
+                        required: "Você deve informar o seu bairro",
+                      })}
+                      placeholder="Bairro"
+                      id="bairro"
+                      className="mt-1 block w-full px-3 py-2 bg-base-input border border-slate-300 rounded-md text-sm shadow-sm placeholder-slate-400
       focus:outline-none focus:border-yellow-dark focus:ring-1 focus:ring-yellow-dark
       disabled:bg-slate-50 disabled:text-slate-500 disabled:border-slate-200 disabled:shadow-none
       "
-                  />
-                  <input
-                    type="text"
-                    {...register("city")}
-                    placeholder="Cidade"
-                    id=""
-                    className="mt-1 block w-full px-3 py-2 bg-base-input border border-slate-300 rounded-md text-sm shadow-sm placeholder-slate-400
+                    />
+                    {errors.bairro && (
+                      <p className="underline absolute">
+                        {errors.bairro.message}
+                      </p>
+                    )}
+                  </label>
+                  <label>
+                    Cidade
+                    <input
+                      type="text"
+                      {...register("city", {
+                        required: "Você deve informar a sua cidade",
+                      })}
+                      placeholder="Cidade"
+                      id="city"
+                      className="mt-1 block w-full px-3 py-2 bg-base-input border border-slate-300 rounded-md text-sm shadow-sm placeholder-slate-400
       focus:outline-none focus:border-yellow-dark focus:ring-1 focus:ring-yellow-dark
       disabled:bg-slate-50 disabled:text-slate-500 disabled:border-slate-200 disabled:shadow-none
       "
-                  />
-                  <input
-                    type="text"
-                    {...register("UF")}
-                    placeholder="UF"
-                    id=""
-                    className="mt-1 block w-full px-3 py-2 bg-base-input border border-slate-300 rounded-md text-sm shadow-sm placeholder-slate-400
+                    />
+                    {errors.city && (
+                      <p className="underline absolute">
+                        {errors.city.message}
+                      </p>
+                    )}
+                  </label>
+                  <label>
+                    UF
+                    <input
+                      type="text"
+                      {...register("UF", {
+                        required: "Você deve informar o seu estado",
+                      })}
+                      placeholder="UF"
+                      id="uf"
+                      className="mt-1 block w-full px-3 py-2 bg-base-input border border-slate-300 rounded-md text-sm shadow-sm placeholder-slate-400
       focus:outline-none focus:border-yellow-dark focus:ring-1 focus:ring-yellow-dark
       disabled:bg-slate-50 disabled:text-slate-500 disabled:border-slate-200 disabled:shadow-none
       "
-                  />
+                    />
+                    {errors.uf && (
+                      <p className="underline absolute">{errors.uf.message}</p>
+                    )}
+                  </label>
                 </div>
               </div>
             </div>
@@ -185,39 +268,40 @@ const { register, handleSubmit, watch, formState: { errors } } = useForm();
             </div>
             <div>
               <div className="mt-5 mr-10 border w-[498px] p-10 bg-[#F3F2F2] container rounded-lg shadow-sm rounded-tr-3xl rounded-bl-3xl rounded-tl-lg rounded-br-lg ">
-                <CoffeeCart title={"title"} />
-                <div className="mt-10 font-roboto flex justify-between">
-                  <span>Total de itens</span>
+                {cart.size > 0 && <CoffeeCart title={"title"} />}
+                {cart.size === 0 && (
                   <div>
-                    <span className="text-lg">0</span>
+                    <div className="flex justify-center">
+                      <ShoppingCart size={80} />
+                    </div>
+                    <div className="text-center mt-2 text-xl -mb-5 grid items-center">
+                      Carrinho vazio
+                      <a
+                        href="/"
+                        className="text-white text-lg bg-yellow w-96 mt-10 center text-center h-10 rounded-lg hover:bg-yellow-dark "
+                      >
+                        Voltar Home
+                      </a>
+                    </div>
+                    <div className="ml-3"></div>
                   </div>
-                </div>
-                <div className="mt-4 font-roboto flex justify-between">
-                  <span>Entrega</span>
-                  <div>
-                    <span>R$ 3,50</span>
-                  </div>
-                </div>
-                <div className="mt-4 flex justify-between font-roboto font-extrabold text-2xl">
-                  <h1>Total</h1>
-                  <div>
-                    <span>R$ 43,10</span>
-                  </div>
-                </div>
+                )}
                 <div className="ml-3">
-                  <button
-                    type="submit"
-                    className="text-white text-lg bg-yellow w-96 mt-10 center text-center h-10 rounded-lg hover:bg-yellow-dark"
-                  >
-                    Confirmar Pedido
-                  </button>
-                  {errors.exampleRequired && <p>This field is required</p>}
+                  {cart.size > 0 && (
+                    <button
+                      type="submit"
+                      className="text-white text-lg bg-yellow w-96 mt-10 center text-center h-10 rounded-lg hover:bg-yellow-dark "
+                    >
+                      Confirmar Pedido
+                    </button>
+                  )}
                 </div>
               </div>
             </div>
           </form>
+          <div className="mt-5 ml-20 animate-pulse "></div>
         </div>
       </div>
     </div>
-  );
+  )
 }

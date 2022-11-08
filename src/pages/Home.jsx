@@ -1,13 +1,16 @@
 import { Coffee, Package, ShoppingCart, Timer } from "phosphor-react";
+import useSWR from "swr";
 import coffeeImage from "../assets/ImageCoffee.svg";
 import { Coffees } from "./Coffes";
 
+const fetcher = (...args) => fetch(...args).then(res => res.json())
 
 import { useCart } from "../components/Context/CartContext";
 import {Alert} from '@mui/material';
 
 export function Home(props) {
   const cart = useCart();
+  const { data, error } = useSWR('/api/get-promo', fetcher)
   return (
     <div>
       <div className="grid">

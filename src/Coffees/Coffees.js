@@ -1,36 +1,36 @@
-import Expresso from "../assets/CoffeesCard/Expresso.svg";
-import Americano from "../assets/CoffeesCard/Americano.svg";
-import ExpressoCremoso from "../assets/CoffeesCard/ExpressoCremoso.svg";
-import ExpressoGelado from "../assets/CoffeesCard/CafeGelado.svg";
-import ComLeite from "../assets/CoffeesCard/CafeLeite.svg";
-import Latte from "../assets/CoffeesCard/Latte.svg";
-import Capucho from "../assets/CoffeesCard/Capuccino.svg";
-import Mocchi from "../assets/CoffeesCard/Macchiato.svg";
-import Moca from "../assets/CoffeesCard/Mochaccino.svg";
-import ChocoQuente from "../assets/CoffeesCard/ChocolateQuente.svg";
-import Cubano from "../assets/CoffeesCard/Cubano.svg";
-import Havaiano from "../assets/CoffeesCard/Havaiano.svg";
-import Arabe from "../assets/CoffeesCard/Arabe.svg";
-import Irlandes from "../assets/CoffeesCard/Irlandes.svg";
+import Expresso from "../assets/CoffeesCard/Expresso.svg"
+import Americano from "../assets/CoffeesCard/Americano.svg"
+import ExpressoCremoso from "../assets/CoffeesCard/ExpressoCremoso.svg"
+import ExpressoGelado from "../assets/CoffeesCard/CafeGelado.svg"
+import ComLeite from "../assets/CoffeesCard/CafeLeite.svg"
+import Latte from "../assets/CoffeesCard/Latte.svg"
+import Capucho from "../assets/CoffeesCard/Capuccino.svg"
+import Mocchi from "../assets/CoffeesCard/Macchiato.svg"
+import Moca from "../assets/CoffeesCard/Mochaccino.svg"
+import ChocoQuente from "../assets/CoffeesCard/ChocolateQuente.svg"
+import Cubano from "../assets/CoffeesCard/Cubano.svg"
+import Havaiano from "../assets/CoffeesCard/Havaiano.svg"
+import Arabe from "../assets/CoffeesCard/Arabe.svg"
+import Irlandes from "../assets/CoffeesCard/Irlandes.svg"
 
 export const coffees = [
   {
+    qntd: [],
     id: "Expresso Tradicional",
     title: "Expresso Tradicional",
     description: "O tradicional café feito com água quente e grãos moídos",
     image: Expresso,
     tags: ["Tradicional"],
-    price: "9,90",
-    qntd: [{}],
+    price: "9",
   },
   {
+    qntd: [],
     id: "Expresso Americano",
     title: "Expresso Americano",
     description: "Expresso diluído, menos intenso que o tradicional",
     image: Americano,
     tags: ["Tradicional"],
-    price: "9,90",
-    qntd: [{}],
+    price: 9,
   },
   {
     id: "Expresso Cremoso",
@@ -38,8 +38,8 @@ export const coffees = [
     description: "Café expresso tradicional com espuma cremosa",
     image: ExpressoCremoso,
     tags: ["Tradicional"],
-    price: "9,90",
-    qntd: [{}],
+    price: 9,
+    qntd: [],
   },
   {
     id: "Expresso Gelado",
@@ -47,8 +47,8 @@ export const coffees = [
     description: "Bebida preparada com café expresso e cubos de gelo",
     image: ExpressoGelado,
     tags: [["Tradicional"], "Gelado"],
-    price: "9,90",
-    qntd: [{}],
+    price: 9,
+    qntd: [],
   },
   {
     id: "Café com Leite",
@@ -56,8 +56,8 @@ export const coffees = [
     description: "Meio a meio de expresso tradicional com leite vaporizado",
     image: ComLeite,
     tags: ["Tradicional", "Com Leite"],
-    price: "9,90",
-    qntd: [{}],
+    price: 9,
+    qntd: [],
   },
   {
     id: "latte",
@@ -66,8 +66,8 @@ export const coffees = [
       "Uma dose de café expresso com o dobro de leite e espuma cremosa",
     image: Latte,
     tags: ["Tradicional", "Com Leite"],
-    price: "9,90",
-    qntd: [{}],
+    price: 9,
+    qntd: [],
   },
   {
     id: "Capuccino",
@@ -76,8 +76,8 @@ export const coffees = [
       "Bebida com canela feita de doses iguais de café, leite e espuma",
     image: Capucho,
     tags: ["Tradicional", "Com Leite"],
-    price: "9,90",
-    qntd: [{}],
+    price: 9,
+    qntd: [],
   },
   {
     id: "Mocchiato",
@@ -86,8 +86,8 @@ export const coffees = [
       "Café expresso misturado com um pouco de leite quente e espuma",
     image: Mocchi,
     tags: ["Tradicional", "Com Leite"],
-    price: "9,90",
-    qntd: [{}],
+    price: 9,
+    qntd: [],
   },
   {
     id: "Mocaccino",
@@ -95,8 +95,8 @@ export const coffees = [
     description: "Café expresso com calda de chocolate, pouco leite e espuma",
     image: Moca,
     tags: ["Tradicional", "Com Leite"],
-    price: "9,90",
-    qntd: [{}],
+    price: 9,
+    qntd: [],
   },
   {
     id: "Chocolate Quente",
@@ -104,8 +104,8 @@ export const coffees = [
     description: "Bebida feita com chocolate dissolvido no leite quente e café",
     image: ChocoQuente,
     tags: ["Especial", "Com Leite"],
-    price: "9,90",
-    qntd: [{}],
+    price: 9,
+    qntd: [],
   },
   {
     id: "Cubano",
@@ -114,8 +114,8 @@ export const coffees = [
       "Drink gelado de café expresso com rum, creme de leite e hortelã",
     image: Cubano,
     tags: ["Especial", "Alcoólico", "Gelado"],
-    price: "9,90",
-    qntd: [{}],
+    price: 9,
+    qntd: [],
   },
   {
     id: "Havaiano",
@@ -123,8 +123,8 @@ export const coffees = [
     description: "Bebida adocicada preparada com café e leite de coco",
     image: Havaiano,
     tags: ["Especial"],
-    price: "9,90",
-    qntd: [{}],
+    price: 9,
+    qntd: [],
   },
   {
     id: "Árabe",
@@ -132,8 +132,8 @@ export const coffees = [
     description: "Bebida preparada com grãos de café árabe e especiarias",
     image: Arabe,
     tags: ["Especial"],
-    price: "9,90",
-    qntd: [{}],
+    price: 9,
+    qntd: [],
   },
   {
     id: "Irlandês",
@@ -141,7 +141,7 @@ export const coffees = [
     description: "Bebida a base de café, uísque irlandês, açúcar e chantilly",
     image: Irlandes,
     tags: ["Especial", "Alcoólico"],
-    price: "9,90",
-    qntd: [{}],
+    price: 9,
+    qntd: [],
   },
-];
+]

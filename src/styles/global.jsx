@@ -17,4 +17,10 @@ export const GlobalStyle = createGlobalStyle`
     font-weight: 400;
     font-size: 1rem;
   }
+  
+  @media (min-width: 700px) and (max-width:1200px){
+    body{
+      background: red;
+    }
+  }
 `;

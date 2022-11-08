@@ -67,5 +67,5 @@ export function Purchase() {
         </div>
       </div>
     </div>
-  );
+  )
 }

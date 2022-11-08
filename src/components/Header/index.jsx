@@ -4,7 +4,7 @@ import { MapPin, ShoppingCart } from "phosphor-react";
 import logoCoffee from "../../assets/Logo.svg";
 import { Badge } from "@mui/material";
 import { Link } from "react-router-dom";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 
 import { useCart } from "../Context/CartContext";
 
@@ -20,13 +20,13 @@ export function Header(props) {
       <div>
         <nav>
           <div className="w-36">
-            <a
-              href="/FinishedPurchase"
+            <Link
+              to="/FinishedPurchase"
               className="h-11 center bg-purple-light rounded-md hover:bg-purple-400 gap-1 shadow"
             >
               <MapPin size={32} weight="fill" color="#8047F8" />
               Joinville, SC
-            </a>
+            </Link>
           </div>
           <div className="h-11 w-10 bg-yellow rounded-md">
             <Badge color="warning" badgeContent={cart.size}>
@@ -45,5 +45,5 @@ export function Header(props) {
         </nav>
       </div>
     </HeaderContainer>
-  );
+  )
 }

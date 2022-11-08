@@ -12,18 +12,14 @@ export const Coffees = () => {
 
   return (
     <div className="mt-20 ml-2">
+    
       <div>
         <span className="font-extrabold text-4xl  ml-10">Nossos cafés</span>
       </div>
       <div className=" grid grid-cols-4 mx-24 center">
         {coffees.map((coffeeList) => {
           const [countCoffee, setCountCoffee] = useState(1);
-          
-          // if(countCoffee < 0){
-          //   alert("Quantidade negativa")
-          //   setCountCoffee + 1
-          // }
-          
+
           coffeeList.qntd = countCoffee
 
           return (
@@ -51,7 +47,7 @@ export const Coffees = () => {
                   <div className="mt-14 flex content-end justify-items-start">
                     <span className="font-roboto text-base mt-1">R$ </span>
                     <span className="ml-1 text-3xl font-bold font-baloo">
-                      {coffeeList.price}
+                      {coffeeList.price},00
                     </span>
                     <div className="ml-3 bg-base-button w-20 rounded h-10">
                       <div className="flex justify-around mt-[6px]">
