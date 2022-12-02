@@ -4,10 +4,8 @@ import { MapPin, ShoppingCart } from "phosphor-react";
 import logoCoffee from "../../assets/Logo.svg";
 import { Badge } from "@mui/material";
 import { Link } from "react-router-dom";
-import { useContext, useState } from "react";
 
 import { useCart } from "../Context/CartContext";
-
 
 export function Header(props) {
   const cart = useCart()

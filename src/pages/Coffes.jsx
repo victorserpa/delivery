@@ -1,18 +1,14 @@
-import { minHeight } from "@mui/system";
-import { Coffee, Minus, Plus, ShoppingCart } from "phosphor-react";
-import { useEffect, useState } from "react";
-import { json } from "react-router-dom";
+import { Minus, Plus, ShoppingCart } from "phosphor-react";
+import { useState } from "react";
 import { coffees } from "../Coffees/Coffees";
 import { useCart } from "../components/Context/CartContext";
+import { priceFormatter } from "../utils/formatter";
 
 export const Coffees = () => {
   const cart = useCart();
-  // const qtd = setCountCoffee
   
-
   return (
     <div className="mt-20 ml-2">
-    
       <div>
         <span className="font-extrabold text-4xl  ml-10">Nossos cafés</span>
       </div>
@@ -45,9 +41,8 @@ export const Coffees = () => {
                 </h2>
                 <div>
                   <div className="mt-14 flex content-end justify-items-start">
-                    <span className="font-roboto text-base mt-1">R$ </span>
                     <span className="ml-1 text-3xl font-bold font-baloo">
-                      {coffeeList.price},00
+                      {priceFormatter.format(coffeeList.price)}
                     </span>
                     <div className="ml-3 bg-base-button w-20 rounded h-10">
                       <div className="flex justify-around mt-[6px]">
@@ -77,7 +72,7 @@ export const Coffees = () => {
                 </div>
               </div>
             </div>
-          );
+          )
         })}
       </div>
     </div>

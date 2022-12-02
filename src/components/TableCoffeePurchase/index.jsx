@@ -1,5 +1,6 @@
 import { Minus, Plus, Trash } from "phosphor-react"
 import { coffees } from "../../Coffees/Coffees"
+import { priceFormatter } from "../../utils/formatter"
 
 import { useCart } from "../Context/CartContext"
 
@@ -29,7 +30,7 @@ export function CoffeeCart() {
                         </span>
                       </div>
                       <div className="ml-16">
-                        <span>R$ {priceCount},00</span>
+                        <span>{priceFormatter.format(priceCount)}</span>
                       </div>
                     </div>
                     <div>
@@ -89,7 +90,9 @@ export function CoffeeCart() {
             <div className="mt-10 font-roboto flex justify-between">
               <span>Total de itens</span>
               <div>
-                <span className="text-lg">R$ {cart.cartTotal},00</span>
+                <span className="text-lg">
+                  {priceFormatter.format(cart.cartTotal)}
+                </span>
               </div>
             </div>
             <div className="mt-4 font-roboto flex justify-between">
@@ -101,7 +104,7 @@ export function CoffeeCart() {
             <div className="mt-4 flex justify-between font-roboto font-extrabold text-2xl">
               <h1>Total</h1>
               <div>
-                <span>R$ {totalPurchase}</span>
+                <span>{priceFormatter.format(totalPurchase)}</span>
               </div>
             </div>
           </div>
