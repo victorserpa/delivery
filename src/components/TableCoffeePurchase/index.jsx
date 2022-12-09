@@ -1,5 +1,6 @@
 import { Minus, Plus, Trash } from "phosphor-react"
 import { coffees } from "../../Coffees/Coffees"
+import { Coffees } from "../../pages/Coffes"
 import { priceFormatter } from "../../utils/formatter"
 
 import { useCart } from "../Context/CartContext"
@@ -13,8 +14,7 @@ export function CoffeeCart() {
         {Object.keys(cart.items).map((itemKeys) => {
           const product = cart.items[itemKeys].product
           const priceCount = product.qntd * parseInt(product.price)
-          const qtds = cart.items[product.id].qtd
-          // console.log(qtds)
+          const qtd = product.qntd
           return (
             <div key={product.title}>
               <div className="flex gap-6 divide-y divide-y-reverse mt-4">
@@ -24,7 +24,7 @@ export function CoffeeCart() {
                   </div>
                   <div>
                     <div className="flex gap-10">
-                      <div className="flex gap- h-5">
+                      <div className="flex h-5">
                         <span className="font-roboto w-40">
                           {product.title}
                         </span>
@@ -48,10 +48,10 @@ export function CoffeeCart() {
                                   weight="bold"
                                 />
                               </div>
-                              <span className="text-xl">{qtds}</span>
+                              <span className="text-xl">{qtd}</span>
                               <div
                                 type="button"
-                                onClick={() => cart.changeQtd(product.id, +1)}
+                                onClick={() => cart.changeQtd(product.id)}
                               >
                                 <Plus size={18} color="#8047f8" weight="bold" />
                               </div>
@@ -60,7 +60,8 @@ export function CoffeeCart() {
                           <div>
                             <div
                               type="button"
-                              className="flex gap-1 items-center text-center text-sm font-roboto ml-2 border w-28 h-10 rounded-md bg-[#E6E5E5] hover:bg-[#D7D5D5] cursor-pointer"
+                              className="flex gap-1 items-center text-center text-sm font-roboto ml-2 border w-28 h-10 rounded-md 
+                              bg-[#E6E5E5] hover:bg-[#D7D5D5] cursor-pointer"
                               onClick={() =>
                                 cart.removeFromCart({
                                   id: product.id,

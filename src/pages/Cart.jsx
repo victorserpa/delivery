@@ -31,8 +31,6 @@ export function Cart({ children }) {
     resolver: yupResolver(schema),
   })
 
-  // const [data, setData] = useState(null)
-
   const Button = styled.button`
     background-color: #e6e5e5;
     /* color: white; */

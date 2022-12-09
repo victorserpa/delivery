@@ -2,13 +2,9 @@ import { Coffee, Package, ShoppingCart, Timer } from "phosphor-react";
 import coffeeImage from "../assets/ImageCoffee.svg";
 import { Coffees } from "./Coffes";
 
-const fetcher = (...args) => fetch(...args).then(res => res.json())
-
-import { useCart } from "../components/Context/CartContext";
-
 export function Home(props) {
   return (
-    <div>
+    <>
       <div className="grid">
         <div className="mt-20 flex justify-center gap-36">
           <div className="w-1/2  -ml-16">
@@ -79,6 +75,6 @@ export function Home(props) {
         </div>
       </div>
       <Coffees />
-    </div>
+    </>
   );
 }

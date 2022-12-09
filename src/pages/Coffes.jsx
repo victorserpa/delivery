@@ -17,7 +17,8 @@ export const Coffees = () => {
           const [countCoffee, setCountCoffee] = useState(1);
 
           coffeeList.qntd = countCoffee
-
+          cart.qtd = countCoffee
+          
           return (
             <div
               className="container w-72 h-80 rounded-tr-3xl rounded-bl-3xl rounded-tl-lg rounded-br-lg bg-[#F3F2F2] grid justify-items-center mt-12"

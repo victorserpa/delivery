@@ -1,10 +1,8 @@
 import { createContext, useContext, useEffect, useState } from "react"
-import { coffees } from "../../Coffees/Coffees"
-import { Coffees } from "../../pages/Coffes"
 
 export const CartContext = createContext({})
 
-export const CartProvider = ({ children, props }) => {
+export const CartProvider = ({ children }) => {
   const [items, setItems] = useState({})
 
   useEffect(() => {
@@ -52,14 +50,13 @@ export const CartProvider = ({ children, props }) => {
       newCart[product] = {
         ...newCart[product],
         qtd: items[product].product.qntd + 1,
-        
       }
 
       console.log({ newCart })
       // console.log(cart)
       return current
       localStorage.setItem("cart", JSON.stringify(newCart))
-      // return newCart
+      return newCart
     })
   }
   
