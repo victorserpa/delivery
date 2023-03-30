@@ -11,7 +11,7 @@ import { CurrencyDollar, MapPinLine, ShoppingCart, Link } from "phosphor-react"
 import { CoffeeCart } from "../components/TableCoffeePurchase"
 import { useCart } from "../components/Context/CartContext"
 
-export function Cart({ children }) {
+export function Cart() {
   const schema = yup
     .object({
       cep: yup.string().required("O CEP é obrigatório"),
@@ -264,8 +264,8 @@ export function Cart({ children }) {
                 <ButtonGroup />
               </div>
             </div>
-            <div>
-              <div className="mt-5 mr-10 border w-[498px] p-10 bg-[#F3F2F2] container rounded-lg shadow-sm rounded-tr-3xl rounded-bl-3xl rounded-tl-lg rounded-br-lg ">
+              <div>
+                <div className="mt-5 mr-10 border w-[498px] p-10 bg-[#F3F2F2] container rounded-lg shadow-sm rounded-tr-3xl rounded-bl-3xl rounded-tl-lg rounded-br-lg ">
                 {cart.size > 0 && <CoffeeCart title={"title"} />}
                 {cart.size === 0 && (
                   <div>
